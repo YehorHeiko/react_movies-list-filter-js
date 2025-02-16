@@ -4,9 +4,7 @@ import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
 
 function filterMovies(movie, query) {
-  const des = [...movie];
-
-  return des.filter(
+  return movie.filter(
     e =>
       e.title.toLowerCase().includes(query.toLowerCase()) ||
       e.description.toLowerCase().includes(query.toLowerCase()),
@@ -15,7 +13,7 @@ function filterMovies(movie, query) {
 
 export const App = () => {
   const [sort, setSort] = useState('');
-  const filtrSevr = filterMovies(moviesFromServer, sort);
+  const filteredMovies = filterMovies(moviesFromServer, sort);
 
   return (
     <div className="page">
@@ -39,7 +37,7 @@ export const App = () => {
           </div>
         </div>
 
-        <MoviesList movies={filtrSevr} />
+        <MoviesList movies={filteredMovies} />
       </div>
 
       <div className="sidebar">Sidebar goes here</div>
